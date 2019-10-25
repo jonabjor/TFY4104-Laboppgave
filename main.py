@@ -1,5 +1,6 @@
-from fysikkNumerikk import get_time
-from plotAndShow import plotShow
+from numerikkberegning import get_time
+from visplot import plotShow
+from eksperiment import eksp_data
 
 def main():
     # x-verdier for baneprofilene
