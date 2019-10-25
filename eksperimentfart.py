@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# returnerer alle verdier for tid og fart for forsøket.
 def eks_speed():
     t_A = np.linspace(0,1.0723,200)
     t_B = np.linspace(0,0.81,200)

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from eksternlab import height, slope, curvature
 import csv
-
+# Erstatter komma med punktum fra input csv-fila
 def comma(arr):
     arr_rtn = []
     for elm in arr:

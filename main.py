@@ -27,7 +27,7 @@ def main():
     ylim = [0,1.440]
     legendloc = "lower right"
     save = True
-    figname = "plotX.pdf"
+    figname = "numX.pdf"
     # kaller plowShow for x(t)
     plotShow(t, x, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
 
@@ -36,7 +36,7 @@ def main():
     ylabel = r'$v [m/s]$'
     xlim = [0,1.6]
     ylim = [0,4]
-    figname = "plotY.pdf"
+    figname = "numV.pdf"
     # kaller plotShow for vx(t)
     plotShow(t, v_x, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
 
@@ -51,7 +51,7 @@ def main():
     xlim = [0,1.9]
     ylim = [0,1.440]
     gtitle = "Eksperimentelt resultat for Bane A, B og C"
-    figname = "plotXEks.pdf"
+    figname = "eksX.pdf"
     # kaller plowShow for x(t) (data fra eksperimentet)
     plotShow(t, x, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
 
@@ -63,7 +63,7 @@ def main():
     ylabel = r'$v [m/s]$'
     xlim = [0,1.6]
     ylim = [0,4]
-    figname = "plotYEks.pdf"
+    figname = "eksV.pdf"
     # kaller plowShow for vx(t) (data fra eksperimentet)
     plotShow(t, v, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
 main()

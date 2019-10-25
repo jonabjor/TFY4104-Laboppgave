@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+# Plotter/Lagrer avhengig av save variabelen (True/False)
 def plotShow(x, y, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname):
     plt.figure()
     for i in range(len(y)):
