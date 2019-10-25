@@ -13,9 +13,9 @@ def comma(arr):
     return arr_rtn
 
 
-def eksp_data():
+def eksp_data(filnavn):
     reader = csv.reader(
-        open("BaneABC_Ole.csv"), delimiter=";")
+        open(filnavn), delimiter=";")
     t_A = []
     x_A = []
     t_B = []
@@ -32,4 +32,4 @@ def eksp_data():
             t_C.append(row[6])
             x_C.append(row[7])
         teller = teller + 1
-    t_A, x_A, t_B, x_B, t_C, x_C = comma(t_A), comma(x_A), comma(t_B), comma(x_B), comma(t_C), comma(x_C)
+    return comma(t_A), comma(x_A), comma(t_B), comma(x_B), comma(t_C), comma(x_C)

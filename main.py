@@ -1,7 +1,7 @@
 from numerikkberegning import get_time
 from visplot import plotShow
 from eksperiment import eksp_data
-
+from eksperimentfart import eks_speed
 def main():
     # x-verdier for baneprofilene
     x = [0, 0.20, 0.40, 0.60, 0.80, 1, 1.20, 1.40]
@@ -33,11 +33,38 @@ def main():
 
     # setup parametere for vx(t)
     v_x = [v_x_a, v_x_b, v_x_c]
-    ylabel = r'$x [m]$'
+    ylabel = r'$v [m/s]$'
     xlim = [0,1.6]
     ylim = [0,4]
     figname = "plotY.pdf"
     # kaller plotShow for vx(t)
     plotShow(t, v_x, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
+
+    # filinput for eksperimentell data. Dataverdier er hentet fra Tracker.
+    filename = "input.csv"
+    # kaller ekspdata
+    t_A, x_A, t_B, x_B, t_C, x_C = eksp_data(filename)
+    # setup parametere for plotShow
+    t = [t_A, t_B, t_C]
+    x = [x_A, x_B, x_C]
+    ylabel = r'$x [m]$'
+    xlim = [0,1.9]
+    ylim = [0,1.440]
+    gtitle = "Eksperimentelt resultat for Bane A, B og C"
+    figname = "plotXEks.pdf"
+    # kaller plowShow for x(t) (data fra eksperimentet)
+    plotShow(t, x, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
+
+    # kaller eks_speed() for å hente verdier for farten eksperimentelt
+    v_A, v_B, v_C, t_A, t_B, t_C = eks_speed()
+    # setup parametere
+    t = [t_A, t_B, t_C]
+    v = [v_A, v_B, v_C]
+    ylabel = r'$v [m/s]$'
+    xlim = [0,1.6]
+    ylim = [0,4]
+    figname = "plotYEks.pdf"
+    # kaller plowShow for vx(t) (data fra eksperimentet)
+    plotShow(t, v, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
 main()
     
