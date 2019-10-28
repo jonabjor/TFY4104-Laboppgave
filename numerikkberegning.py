@@ -58,7 +58,7 @@ def get_time(x, y):
         aks = K*(np.sin(a(x_old)))
 
         f_new = m*g*np.sin(a(x_old)) - m*aks
-        no_new = m*g*np.cos(a(x_old)) + m*v_new**2*k(x_old)
+        no_new = m*g*np.cos(a(x_old)) + m*v_new**2/k(x_old)
 
         t[n+1] = t_old+h
         v[n+1] = v_new
