@@ -2,6 +2,7 @@ from numerikkberegning import get_time
 from visplot import plotShow
 from eksperiment import eksp_data
 from eksperimentfart import eks_speed
+import matplotlib.pyplot as plt
 def main():
     # x-verdier for baneprofilene
     x = [0, 0.20, 0.40, 0.60, 0.80, 1, 1.20, 1.40]
@@ -11,10 +12,10 @@ def main():
     y_b = [0.81, 0.39, 0.185, 0.095, 0.075, 0.1, 0.185, 0.32]
     y_c = [0.81, 0.78, 0.75, 0.71, 0.655, 0.585, 0.49, 0.32]
 
-    x_a, v_a, t_ans_a, t_plot_a, v_x_a = get_time(x, y_a)
-    x_b, v_b, t_ans_b, t_plot_b, v_x_b = get_time(x, y_b)
-    x_c, v_c, t_ans_c, t_plot_c, v_x_c = get_time(x, y_c)
-
+    x_a, v_a, t_ans_a, t_plot_a, v_x_a, f_a, no_a = get_time(x, y_a)
+    x_b, v_b, t_ans_b, t_plot_b, v_x_b, f_b, no_b = get_time(x, y_b)
+    x_c, v_c, t_ans_c, t_plot_c, v_x_c, f_c, no_c = get_time(x, y_c)
+    '''
     # parametere for plotshow fra plotAndShow
     t = [t_plot_a, t_plot_b, t_plot_c]
     x = [x_a, x_b, x_c]
@@ -66,5 +67,43 @@ def main():
     figname = "eksV.pdf"
     # kaller plowShow for vx(t) (data fra eksperimentet)
     plotShow(t, v, color, label, gtitle, ylabel, xlabel, xlim, ylim, legendloc, save, figname)
+    '''
+    # parametere for friksjonskraft og normalkraft Bane A
+    plt.figure()
+    plt.plot(t_plot_a, f_a, color="black", label="Friksjonskraft")
+    plt.plot(t_plot_a, no_a, color="blue", label="Normalkraft")
+    plt.title("Normalkraft og friksjonskraft for Bane A")
+    plt.legend()
+    plt.ylabel("Kraft [N]")
+    plt.xlabel("tid [s]")
+    plt.xlim(0,1.5)
+    plt.ylim(-0.2,0.5)
+    plt.grid()
+    plt.show()
+
+    # parametere for friksjonskraft og normalkraft Bane B
+    plt.figure()
+    plt.plot(t_plot_b, f_b, color="black", label="Friksjon")
+    plt.plot(t_plot_b, no_b, color="blue", label="Normalkraft")
+    plt.title("Normalkraft og friksjonskraft for Bane B")
+    plt.legend()
+    plt.ylabel("Kraft [N]")
+    plt.xlabel("tid [s]")
+    plt.xlim(0,1)
+    plt.ylim(-0.5,1)
+    plt.grid()
+    plt.show()
+
+    plt.figure()
+    plt.plot(t_plot_c, f_c, color="black", label="Friksjon")
+    plt.plot(t_plot_c, no_c, color="blue", label="Normalkraft")
+    plt.title("Normalkraft og friksjonskraft for Bane C")
+    plt.legend()
+    plt.ylabel("Kraft [N]")
+    plt.xlabel("tid [s]")
+    plt.xlim(0,1.7)
+    plt.ylim(-0.5,0.7)
+    plt.grid()
+    plt.show()
 main()
     

@@ -6,9 +6,8 @@ def get_time(x, y):
 
     he = height(x,y) 
     x_interp = np.linspace(0.0, 1.4, 10000)
-
     alpha = slope(he, x_interp)
-
+    kappa = curvature(he, x_interp)
     N = 10000  # antall steg
     h = 0.002  # stegstørrelse
 
@@ -17,36 +16,56 @@ def get_time(x, y):
     v_0 = 0
     x_0 = 0
     v_x_0 = 0
+    no_0 = 0
+    f_0 = 0
 
     # konstant g/(1+(I_0/mr^2)) for kula
     K = 7.007143
+    m = 0.03
+    g = 9.81
+    c = 2/5
 
+    #kappa = curvature(he_acc, x_interp)
     # alpha funksjonen a(x)
     a = height(x_interp, alpha)
+    k = height(x_interp, kappa)
 
     t = np.zeros(N+1)
     v = np.zeros(N+1)
     x = np.zeros(N+1)
     v_x = np.zeros(N+1)
+    no = np.zeros(N+1)
+    f = np.zeros(N+1)
 
     t[0] = t_0
     v[0] = v_0
     x[0] = x_0
     v_x[0] = v_x_0
+    no[0] = no_0
+    f[0] = f_0
 
     t_old = t_0
     v_old = v_0
     x_old = x_0
+    no_old = no_0
+    f_old = f_0
 
     for n in range(N):
         v_new = v_old + h*(K*(np.sin(a(x_old))))  # Euler's method
         v_x_new = v_new*np.cos(a(x_old))
         x_new = x_old + h*(v_new*np.cos(a(x_old)))
 
+        aks = K*(np.sin(a(x_old)))
+
+        f_new = m*g*np.sin(a(x_old)) - m*aks
+        no_new = m*g*np.cos(a(x_old)) + m*v_new**2*k(x_old)
+
         t[n+1] = t_old+h
         v[n+1] = v_new
         x[n+1] = x_new
         v_x[n+1] = v_x_new
+        f[n+1] = f_new
+        no[n+1] = no_new
 
         t_old = t_old+h
         v_old = v_new
@@ -55,11 +74,14 @@ def get_time(x, y):
             t_ans = t_old-h
             N = n
             break
+
     t = t[: N]
     x = x[: N]
     v_x = v_x[: N]
-
-    return x, v, t_ans, t, v_x
+    f = f[: N]
+    no = no[: N]
+    
+    return x, v, t_ans, t, v_x, f, no
 
 '''
 x_a, v_a, t_ans_a, t_plot_a, v_x_a = get_time(y_a)
